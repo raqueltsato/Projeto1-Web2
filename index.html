@@ -7,88 +7,129 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
-        body {
-            font-family: sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box;
         }
 
-        label {
-            display: block;
-            font-size: 18px;
+        body {
+
+            background: #f0f0f5 url(previsao2.png) no-repeat 97% top;
+
+        }
+
+        body,
+        input,
+        button {
+            font: 16px sans-serif;
+            -webkit-font-smoothing: antialiased;
+
+        }
+
+        #root {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #3a3a3a;
+            margin-top: 30px;
+        }
+
+        form {
+            margin-top: 25px;
+            max-width: 600px;
+            display: flex;
         }
 
         input {
-            width: 300px;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            clear: both;
-            margin: 20px;
-            padding-top: 10px;
-        }
-
-        img {
-            width: 100px;
-            float: left;
-            margin-right: 10px;
-        }
-
-        strong {
-            font-size: 20px;
-            display: block;
-        }
-
-        p {
-            margin: 5px 0;
+            flex: 1;
+            height: 40px;
+            padding: 0 24px;
+            color: #3a3a3a;
+            border: 0;
+            border-radius: 5px 0 0 5px;
+            border-color: #fff;
         }
 
         button {
-            font-size: 18px;
-            background-color: white;
-            color: black;
-            border: 2px solid #e7e7e7;
+            width: 130px;
+            height: 40px;
+            background: #5063d7;
+            border: 0;
+            border-radius: 0 5px 5px 0;
+            color: #fff;
+            font-weight: bold;
         }
 
         button:hover {
-            background-color: #e7e7e7;
+            background: #395ad7;
         }
 
-        .resultado {
+        #carregar {
+            display: block;
+            margin-top: 5px;
+        }
+
+        #resultado {
+            margin-top: 50px;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 5px;
+            display: flex;
+            transition: transform 0.2s;
+        }
+        #resultado:hover{
+            transform: translateX(5px);
+        }
+
+        img{
+            margin: 10px 10px 10px 30px;
+        }
+
+        #descricao{
+            margin: 10px 10px 10px 30px;
+        }
+
+        /*.resultado {
             background-color: #d0e3d0;
             margin-top: 50px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
             width: 40%;
-        }
+        }*/
     </style>
 </head>
 
 <body>
 
-    <div class="formulario">
+    <div id="root">
+        <h1>Veja o tempo agora ao redor do mundo </h1>
         <form>
 
-            <label for="cidade">Cidade:</label>
-            <input type="text" class="form-control" id="cidade" name="cidade">
 
+            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Nome da Cidade">
 
             <button type="button" class="btn btn-primary">Pesquisar</button>
 
         </form>
 
-    </div>
-    <div id="carregar" style="display: none;">
-        Carregando...
+        <span id="carregar" style="display: none;">
+            Carregando...
+        </span>
+
+        <div class="resultado" id="resultado">
+
+        </div>
+
     </div>
 
-    <div class="resultado" id="resultado">
 
-    </div>
+
 
 </body>
 <script>
@@ -128,8 +169,10 @@
             document.getElementById('resultado').innerHTML = `
             
                  <img src="${vetCidade[i].link_url}">
-                 <p><b>Cidade: </b>${vetCidade[i].cidade}</p>                
-                 <p><b>Descrição </b>${vetCidade[i].description}</p>`
+                 <div id="descricao">
+                   <p><b>Cidade: </b>${vetCidade[i].cidade}</p>                
+                   <p><b>Descrição </b>${vetCidade[i].description}</p>
+                 </div>`
 
         }
 
