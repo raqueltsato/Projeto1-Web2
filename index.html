@@ -3,112 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Previsão do tempo</title>
+    <title>Previsão do Tempo</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            outline: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #f0f0f5 url(previsao2.png) no-repeat 97% top;
-        }
-
-        body,
-        input,
-        button {
-            font: 16px sans-serif;
-            -webkit-font-smoothing: antialiased;
-
-        }
-
-        #root {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 30px;
-            color: #3a3a3a;
-            margin-top: 20px;
-        }
-
-        form {
-            margin-top: 25px;
-            max-width: 600px;
-            display: flex;
-        }
-
-        input {
-            flex: 1;
-            height: 40px;
-            padding: 0 24px;
-            color: #3a3a3a;
-            border: 0;
-            border-radius: 5px 0 0 5px;
-            border-color: #fff;
-            margin-bottom: 40px;
-        }
-
-        button {
-            width: 130px;
-            height: 40px;
-            background: #5063d7;
-            border: 0;
-            border-radius: 0 5px 5px 0;
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
-
-        button:hover {
-            background: #395ad7;
-        }
-
-        #carregar {
-            display: block;
-            margin-top: 5px;
-        }
-
-        li{
-            margin-top: 20px;
-            max-width: 600px;
-            background: #fff;
-            border-radius: 5px;
-            display: flex;
-            transition: transform 0.2s;
-        }        
-        li:hover{
-            transform: translateX(5px);
-        }
-       
-
-        img{
-            margin: 10px 10px 10px 70px;
-        }
-
-        #descricao{
-            margin: auto 10px auto 50px;
-        }
-
-    </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <div id="root">
-        <h1>Veja o tempo agora ao redor do mundo </h1>
+        <h1>Veja o tempo agora ao redor do mundo</h1>
+
         <form>
-
-
             <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Nome da Cidade">
-
             <button type="button" class="btn btn-primary">Pesquisar</button>
-
         </form>
 
         <span id="carregar" style="display: none;">
@@ -117,99 +25,7 @@
 
         <ul class="resultado" id="resultado">
 
-        </div>
-
     </div>
-
 </body>
-<script>
-
-    const vetCidade = [];
-    const listEl = document.getElementById('resultado');
-
-
-    document.querySelector('button').addEventListener('click', function () {
-
-
-        var cidade = document.getElementById('cidade').value;
-        if (cidade.length < 3) {
-            return alert('Favor inserir o campo com mais de três caracteres');
-        }
-
-        startCarregar();
-        var chamadaApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cidade + '&appid=83a9db599874d9f5683e2016c92ae339';
-
-        axios.get(chamadaApi).then(function (res) {
-            salvaArray(res);
-
-        }).catch(error => {
-            alert('Cidade não encontrada');
-
-        })
-            .finally(() => endCarregar(),
-                document.getElementById('cidade').value = '');
-
-
-    });
-
-
-    function mostraResultado() {
-        
-        document.getElementById('resultado').innerHTML = '';
-        let tamanho = vetCidade.length;
-
-        listEl.value = '';
-
-        vetCidade.forEach(element => {
-
-            let imgEl = document.createElement('img');
-            imgEl.setAttribute('src', element.link_url);
-
-            let divResult = document.createElement('div');
-            divResult.setAttribute('id', 'descricao');
-
-            let titleEl = document.createElement('strong');
-            titleEl.appendChild(document.createTextNode(element.cidade));
-
-            let descriptionEl = document.createElement('p');
-            descriptionEl.appendChild(document.createTextNode(element.description));
-
-            let listItem = document.createElement('li');
-            listItem.appendChild(imgEl);
-            divResult.appendChild(titleEl);
-            divResult.appendChild(descriptionEl);
-            listItem.appendChild(divResult);
-
-
-            listEl.appendChild(listItem);
-        });
-
-    }
-
-    function startCarregar() {
-        // Exibe a div de carregamento
-        document.getElementById('carregar').style.display = 'block';
-    }
-
-
-    function endCarregar() {
-        // Oculta a div de preloader
-        document.getElementById('carregar').style.display = 'none';
-    }
-
-
-
-    function salvaArray(res) {
-        vetCidade.push({
-            cidade: res.data.name,
-            description: res.data.weather[0].description,
-            link_url: `http://openweathermap.org/img/w/${res.data.weather[0].icon}.png`,
-        });
-        mostraResultado();
-
-    }
-
-
-</script>
-
+    <script src="js/script.js"></script>
 </html>

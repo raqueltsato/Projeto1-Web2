@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f0f5 url(../img/previsao2.png) no-repeat 97% top;
+}
+
+body,
+input,
+button {
+    font: 16px sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 30px;
+    color: #3a3a3a;
+    margin-top: 20px;
+}
+
+form {
+    margin-top: 25px;
+    max-width: 600px;
+    display: flex;
+}
+
+input {
+    flex: 1;
+    height: 40px;
+    padding: 0 24px;
+    color: #3a3a3a;
+    border: 0;
+    border-radius: 5px 0 0 5px;
+    border-color: #fff;
+    margin-bottom: 40px;
+}
+
+button {
+    width: 130px;
+    height: 40px;
+    background: #5063d7;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+button:hover {
+    background: #395ad7;
+}
+
+#carregar {
+    display: block;
+    margin-top: 5px;
+}
+
+li{
+    margin-top: 20px;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    transition: transform 0.2s;
+}        
+li:hover{
+    transform: translateX(5px);
+}
+
+
+img{
+    margin: 10px 10px 10px 70px;
+}
+
+#descricao{
+    margin: auto 10px auto 50px;
+}
