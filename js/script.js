@@ -2,10 +2,12 @@ const vetCidade = [];
 const listEl = document.getElementById('resultado');
 
 document.querySelector('button').addEventListener('click', function () {
+    document.getElementById('validacao').style.display = 'none';
     var cidade = document.getElementById('cidade').value;
     
     if (cidade.length < 3) {
-        return alert('Favor inserir o campo com mais de três caracteres');
+        document.getElementById('validacao').style.display = 'block';
+        return;
     }
 
     startCarregar();
