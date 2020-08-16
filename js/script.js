@@ -14,9 +14,11 @@ document.querySelector('button').addEventListener('click', function () {
     var chamadaApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cidade + '&appid=83a9db599874d9f5683e2016c92ae339';
 
     axios.get(chamadaApi).then(function (res) {
+        document.getElementById('cidValidacao').style.display = 'none';
         salvaArray(res);
     }).catch(error => {
-        alert('Cidade não encontrada');
+        document.getElementById('cidValidacao').style.display = 'block';
+        return;
     })
         .finally(() => endCarregar(),
         document.getElementById('cidade').value = '');
